@@ -2,6 +2,7 @@ use serde_json::Value;
 
 pub mod ping;
 pub mod getchapter;
+pub mod colorspread;
 
 #[derive(Debug)]
 pub struct Chapter {
