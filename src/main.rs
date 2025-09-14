@@ -1,4 +1,4 @@
-use std::{env::home_dir, fs, thread::sleep, time::Duration};
+use std::{env::home_dir, fs::{self, File}, io::Write, path::Path, thread::sleep, time::Duration};
 
 use serenity::{all::{ChannelId, ClientBuilder, Context, CreateMessage, EventHandler, GatewayIntents, GuildId, Interaction, Ready}, async_trait, Client};
 
@@ -24,8 +24,15 @@ impl EventHandler for Handler {
         tokio::spawn(async move {
             let channel_id: ChannelId = ChannelId::new(dotenv::var("PING_CHANNEL_ID").unwrap().parse::<u64>().unwrap());
             let home_dir = home_dir().unwrap();
-            let tmp_file_str = format!("{}/.cache/tera-latest", home_dir.to_str().unwrap());
+            let tmp_file_str = format!("{}/.tera-bot/latest-chapter", home_dir.to_str().unwrap());
             let tmp_file = tmp_file_str.as_str();
+            let tmp_dir = format!("{}/.tera-bot", home_dir.to_str().unwrap());
+            fs::create_dir_all(&tmp_dir).unwrap();
+
+            if !Path::new(tmp_file).exists() {
+                let mut file = File::create(tmp_file).unwrap();
+                writeln!(file, "1").unwrap();
+            }
             
             loop {
                 let contents = fs::read_to_string(tmp_file).unwrap();
