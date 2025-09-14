@@ -1,0 +1,14 @@
+[Unit]
+Description=Tera Bot
+After=network.target
+StartLimitIntervalSec=1
+
+[Service]
+ExecStart=/home/devnitrate/tera-bot/target/release/tera-bot
+EnvironmentFile=/home/devnitrate/tera-bot/.env
+Restart=always
+RestartSec=3
+User=devnitrate
+
+[Install]
+WantedBy=multi-user.target
