@@ -30,9 +30,9 @@ pub async fn run(ctx: &Context, interaction: &CommandInteraction) {
         for li in lis {
             let img_url: &str = li.select(&Selector::parse("img").unwrap()).next().unwrap().value().attr("src").unwrap();
 
-            if img_url.contains(format!("Chapter_{}", chapter_num).as_str()) {
+            
+            if img_url.contains(format!("Chapter_{}.png", chapter_num).as_str()) {
                 let colorspread_url = img_url.split_once("/revision").unwrap().0;
-                println!("{}", colorspread_url);
                 img_vec.push(colorspread_url.to_string());
             }
         }
@@ -52,6 +52,4 @@ pub async fn run(ctx: &Context, interaction: &CommandInteraction) {
     if let Err(e) = msg {
         println!("***failed to create colorspread response: {}***", e);
     }
-
-    // ""
 }

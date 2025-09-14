@@ -18,7 +18,7 @@ impl EventHandler for Handler {
         let _commands = guild_id.set_commands(&ctx.http, vec![
             commands::ping::register(),
             commands::getchapter::register(),
-            commands::colorspread::register()
+            commands::colorspread::register(),
         ]).await;
 
         tokio::spawn(async move {
