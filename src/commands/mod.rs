@@ -46,7 +46,7 @@ impl Chapter {
                 if let Some(item) = array.iter().find(|item| item["id"] == number) {
                     let id = item["id"].as_i64().unwrap();
                     let title = item["title"].to_string();
-                    let pages = item["id"].as_u64().unwrap();
+                    let pages = item["pages"].as_u64().unwrap();
 
                     let chapter = Chapter::new(id, title.trim_matches('"'), pages);
                     Some(chapter)
