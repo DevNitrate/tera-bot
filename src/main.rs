@@ -19,6 +19,9 @@ impl EventHandler for Handler {
             commands::ping::register(),
             commands::getchapter::register(),
             commands::colorspread::register(),
+            commands::setquestion::register(),
+            commands::qotd::register(),
+            commands::getpfp::register(),
         ]).await;
 
         tokio::spawn(async move {
@@ -62,6 +65,9 @@ impl EventHandler for Handler {
                 "ping" => commands::ping::run(&ctx, &cmd).await,
                 "getchapter" => commands::getchapter::run(&ctx, &cmd).await,
                 "colorspread" => commands::colorspread::run(&ctx, &cmd).await,
+                "setquestion" => commands::setquestion::run(&ctx, &cmd).await,
+                "qotd" => commands::qotd::run(&ctx, &cmd).await,
+                "getpfp" => commands::getpfp::run(&ctx, &cmd).await,
                 _ => {}
             }
         }
