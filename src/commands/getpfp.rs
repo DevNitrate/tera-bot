@@ -26,7 +26,7 @@ pub async fn run(ctx: &Context, interaction: &CommandInteraction) {
             let avatar_url = user.default_avatar_url();
             avatar_url_final = avatar_url;
         }
-        response = CreateInteractionResponseFollowup::new().embed(CreateEmbed::new().image(avatar_url_final).description(format!("## pfp of following user: {}", user.name)));
+        response = CreateInteractionResponseFollowup::new().embed(CreateEmbed::new().image(avatar_url_final).description(format!("## pfp of following user: <@{}>", user.id)));
     } else {
         response = CreateInteractionResponseFollowup::new().content("***could not fetch user***");
     }
